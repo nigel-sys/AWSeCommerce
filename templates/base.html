@@ -99,7 +99,8 @@
                     <i class="fas fa-shopping-bag me-2"></i
                     ><span id="header-qty" class="me-3">{{request.user.profile.cart_count}}</span>
                     <i class="fas fa-money-bill-wave me-2"></i
-                    ><span id="header-price">$4,000</span>
+                    ><span id="header-price">{% for item in object_list %} {% if forloop.first %}
+                      {{item.get_total_amount}} {%endif%} {% endfor %}</span>
                   </a>
                 </div>
               </div>

@@ -57,14 +57,24 @@ def remove_from_cart(request, slug):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def update_cart(request):
+def remove_singleitem_from_cart(request, slug):
+    product = Product.objects.get(slug=slug)
+    user = request.user
+    cart = Cart.objects.filter(user=user, is_paid=False)
 
-    if request.method == 'POST':
-        data = request.POST['qty'][0]
-        print(data)
-        # cart_item = CartItems.objects.filter(
-        #     product=product, user=user, is_paid=False)
-        # for item in cart_item:
-        #     item.quantity = request.POST
+    if cart.exists():
+        order = cart[0]
+        if order.items.filter(product__slug=product.slug).exists():
+            cart_item = CartItems.objects.filter(
+                product=product, user=user, is_paid=False)[0]
+            if cart_item.quantity > 1:
+                cart_item.quantity -= 1
+                cart_item.save()
+        else:
+            # cart item not present in cart message
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        # cart empty / user doesn't have an order message
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-    return HttpResponseRedirect(reverse("userProfile:cart"))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

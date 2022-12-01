@@ -16,12 +16,25 @@ class Profile(models.Model):
 
 
 class CartItems(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE)
     product = models.ForeignKey(
         Product, on_delete=models.SET_NULL, null=True, blank=True)
     quantity = models.IntegerField(default=1)
     is_paid = models.BooleanField(default=False)
+
+    def get_total_cartitem_price(self):
+        return self.quantity * self.product.price
+
+    def get_total_amount(self):
+        total = 0
+        i = 0
+        cart_items = CartItems.objects.all()
+        while i < cart_items.count():
+            total += cart_items[i].get_total_cartitem_price()
+            i += 1
+        return total
 
 
 class Cart(models.Model):
