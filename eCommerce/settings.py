@@ -25,7 +25,7 @@ SECRET_KEY = '%!rqe*2x9-2=+)c9(=*y-*7_r#^7)cf_$sv*02vot7um26pn)('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['AWS-eCommerce-env.eba-m92npp5h.us-east-1.elasticbeanstalk.com']
 
 
 # Application definition
