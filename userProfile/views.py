@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 
+@login_required
 def add_to_cart(request, slug):
     product = Product.objects.get(slug=slug)
     user = request.user
