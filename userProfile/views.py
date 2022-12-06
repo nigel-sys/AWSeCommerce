@@ -1,12 +1,11 @@
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from .models import Cart, CartItems
 from products.models import Product
 from django.http import HttpResponseRedirect
-from django.db.models import F
 from django.urls import reverse, reverse_lazy
-import json
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 
@@ -78,3 +77,14 @@ def remove_singleitem_from_cart(request, slug):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def checkout(request):
+    return render(request, 'userProfile/checkout.html')
+
+
+class RegisterUser(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'userProfile/register.html'

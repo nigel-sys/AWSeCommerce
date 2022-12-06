@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import add_to_cart, CartView, remove_from_cart, remove_singleitem_from_cart
+from .views import add_to_cart, CartView, remove_from_cart, remove_singleitem_from_cart, checkout, RegisterUser
 
 app_name = "userProfile"
 
@@ -9,5 +9,7 @@ urlpatterns = [
          remove_from_cart, name='remove_from_cart'),
     path('remove-singleitem-from-cart/<slug>',
          remove_singleitem_from_cart, name='remove_singleitem'),
-    path('cart/', CartView.as_view(), name='cart')
+    path('cart/', CartView.as_view(), name='cart'),
+    path("checkout/", checkout, name="checkout"),
+    path("register/", RegisterUser.as_view(), name="register")
 ]
