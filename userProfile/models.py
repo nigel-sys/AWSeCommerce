@@ -11,9 +11,6 @@ class Profile(models.Model):
         User, on_delete=models.CASCADE, related_name='profile')
     profile_image = models.ImageField(upload_to='profile')
 
-    def cart_count(self):
-        return CartItems.objects.filter(cart__is_paid=False, cart__user=self.user).count()
-
 
 class CartItems(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -30,11 +27,18 @@ class CartItems(models.Model):
     def get_total_amount(self):
         total = 0
         i = 0
-        cart_items = CartItems.objects.all()
+        cart_items = CartItems.objects.filter(user=self.user)
         while i < cart_items.count():
             total += cart_items[i].get_total_cartitem_price()
             i += 1
         return total
+
+    def get_cart_count(self):
+        count = 0
+        cart_items = CartItems.objects.filter(user=self.user)
+        for item in cart_items:
+            count = count + item.quantity
+        return count
 
 
 class Cart(models.Model):

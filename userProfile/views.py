@@ -5,6 +5,7 @@ from products.models import Product
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
@@ -30,9 +31,12 @@ def add_to_cart(request, slug):
     return redirect(reverse('userProfile:cart'))
 
 
-class CartView(ListView):
+class CartView(LoginRequiredMixin, ListView):
     model = CartItems
     template_name = 'userProfile/cart_list.html'
+
+    def get_queryset(self):
+        return CartItems.objects.filter(user=self.request.user)
 
 
 def remove_from_cart(request, slug):
