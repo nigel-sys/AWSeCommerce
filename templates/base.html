@@ -101,15 +101,11 @@
                 >
                   <a href="#" class="header-item">
                     <i class="fas fa-heart me-2"></i
-                    ><span id="header-favorite">0</span>
+                    >
                   </a>
                   <a href={% url 'userProfile:cart' %} class="header-item">
                     <i class="fas fa-shopping-bag me-2"></i
-                    ><span id="header-qty" class="me-3">{% for item in object_list %} {% if forloop.first %}
-                      {{item.get_cart_count}} {%endif%} {% endfor %}</span>
-                    <i class="fas fa-money-bill-wave me-2"></i
-                    ><span id="header-price">{% for item in object_list %} {% if forloop.first %}
-                      {{item.get_total_amount}} {%endif%} {% endfor %}</span>
+                    >
                   </a>
                 </div>
               </div>
@@ -128,38 +124,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="mainNav">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-                      <li class="nav-item active">
-                        <a class="nav-link" href={% url 'products:products' %}
-                          >Home <span class="sr-only">(current)</span></a
-                        >
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'products:products' %}>
-                          Computers
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'products:products' %}>
-                          Mobiles
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'products:products' %}>
-                          TVs
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'products:products' %}>
-                          Cameras
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'products:products' %}>
-                          Speakers
-                        </a>
-                      </li>
-                    </ul>
+                    {% block 'filters' %}{% endblock  %}
                   </div>
                 </nav>
               </div>

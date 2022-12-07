@@ -34,6 +34,7 @@ def add_to_cart(request, slug):
 class CartView(LoginRequiredMixin, ListView):
     model = CartItems
     template_name = 'userProfile/cart_list.html'
+    context_object_name = 'cartItems_list'
 
     def get_queryset(self):
         return CartItems.objects.filter(user=self.request.user)

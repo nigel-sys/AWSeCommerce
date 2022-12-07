@@ -23,7 +23,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for item in object_list %}
+                {% for item in cartItems_list %}
                 <tr>
                   <td>
                     <img
@@ -38,13 +38,13 @@
                     <a
                       href="{% url 'userProfile:remove_singleitem' item.product.slug%}"
                       style="text-decoration: none"
-                      ><i class="fas fa-minus mr-2"></i
+                      ><i class="fas fa-minus"></i
                     ></a>
                     {{item.quantity}}
                     <a
                       href="{% url 'userProfile:add_to_cart' item.product.slug%}"
                       style="text-decoration: none"
-                      ><i class="fas fa-plus ml-2"></i
+                      ><i class="fas fa-plus"></i
                     ></a>
                   </td>
                   <td>${{item.get_total_cartitem_price}}</td>
@@ -63,7 +63,7 @@
                 <tr>
                   <th scope colspan="3" class="text-right">Total</th>
                   <th scope>
-                    $ {% for item in object_list %} {% if forloop.first %}
+                    $ {% for item in cartItems_list %} {% if forloop.first %}
                     {{item.get_total_amount}} {%endif%} {% endfor %}
                   </th>
                   <th scope></th>

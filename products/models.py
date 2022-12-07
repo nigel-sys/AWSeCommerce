@@ -9,14 +9,14 @@ from django.urls import reverse
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     CATEGORIES = (
-        ('computers', 'COMPUTERS'),
-        ('mobile', 'MOBILES'),
-        ('tvs', 'TVs'),
-        ('cameras', 'CAMERAS'),
-        ('speakers', 'SPEAKERS')
+        ('COMPUTERS', 'computers'),
+        ('MOBILES', 'mobiles'),
+        ('TVs', 'tvs'),
+        ('CAMERAS', 'cameras'),
+        ('SPEAKERS', 'speakers')
     )
     category_name = models.CharField(
-        max_length=10, choices=CATEGORIES, default='computers')
+        max_length=10, choices=CATEGORIES, default='COMPUTERS')
     slug = models.SlugField(unique=True, null=True, blank=True)
 
     def save(self):
