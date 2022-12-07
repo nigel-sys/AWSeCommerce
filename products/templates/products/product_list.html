@@ -6,10 +6,10 @@
       >Home <span class="sr-only">(current)</span></a
     >
   </li>
-  {% for product in object_list %}
+  {% for category in categorys %}
   <li class="nav-item">
-    <a class="nav-link" href={% url 'products:category' product.category.slug%}>
-      {{product.category.category_name}}
+    <a class="nav-link" href={% url 'products:category' category.slug%}>
+      {{category.category_name}}
     </a>
   </li>
   {% endfor %}
