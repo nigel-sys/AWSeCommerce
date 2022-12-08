@@ -7,6 +7,7 @@ import uuid
 
 
 class Profile(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile')
     profile_image = models.ImageField(upload_to='profile')
@@ -42,6 +43,7 @@ class CartItems(models.Model):
 
 
 class Cart(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='cart')
     items = models.ManyToManyField(CartItems)
