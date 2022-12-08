@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'products.apps.ProductsConfig',
-    'userProfile.apps.UserprofileConfig'
+    'userProfile.apps.UserprofileConfig',
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -134,10 +135,9 @@ STATIC_URL = '/static/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'public/static')
 # MEDIA_URL = '/media/'
 
-STATICFILES_DIR = {
-    os.path.join(BASE_DIR, 'static')
-}
-AWS_STORAGE_BUCKET_NAME = "ecommercex21179158"
+
+os.path.join(BASE_DIR, 'static')
+AWS_STORAGE_BUCKET_NAME = "ecommerce-cpp"
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
