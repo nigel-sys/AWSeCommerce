@@ -31,3 +31,15 @@ class FilteredView(ListView):
         context = super().get_context_data(**kwargs)
         context["categorys"] = Category.objects.all()
         return context
+
+
+def search_products(request):
+    query_dict = request.GET
+    query = query_dict.get("q")  # <input type="search" name="q"/>
+    product = None
+    if query is not None:
+        product = Product.objects.get(product_name__contains=query)
+    context = {
+        'product': product
+    }
+    return render(request, 'products/search.html', context=context)

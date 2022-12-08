@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+<h1>Search Results</h1>
+<div class="col-lg-3 col-sm-6 my-3">
+  <div class="col-12 bg-white text-center h-100 product-item">
+    <div class="row h-100">
+      <div class="col-12 p-0 mb-3">
+        <a href={% url 'products:product_details' product.slug %}>
+          <img src="/media/{{product.product_image}}" width="250px" hight="250px" alt='product_image'/>
+        </a>
+      </div>
+      <div class="col-12 mb-3">
+        <a href={% url 'products:product_details' product.slug %} class="product-name">{{product.product_name}}</a>
+      </div>
+      <div class="col-12 mb-3">
+        <span class="product-price">${{product.price}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock  %}
