@@ -21,6 +21,8 @@ The application uses the following AWS services:
 - Amazon Elastic Beanstalk: for application deployment
 - Amazon CodePipeline: for continuous integration and deployment
 
+![Architecture Diagram](https://github.com/nigel-sys/eCommerce/blob/main/Application%20Architecture.drawio.png)
+
 The application is built using the Django web framework and follows a typical Django application structure. The `settings.py` file contains the settings for the project, and various application folders such as `accounts`, `cart`, and `products` contain the application code.
 
 ## Getting Started
